@@ -1,4 +1,4 @@
-% adams.m
+% PK4adams.m
 % Autor: Kamil Jabłonowski
 % funkcja wyznacza rozwiązanie układu równań różniczkowych o dowolnej
 % wymiarowości metodą wielokrokową Predyktor-Korektor Adamsa ze stałym
@@ -35,7 +35,7 @@ function [t, x] = PK4adams(f, x0, a, h, ~)
     if (a(2) < a(1) + 3 * h)
         error("Zbyt duży krok algorytmu, metoda nieskuteczna");
     end
-    % [~, x(1:4, :)] = RK4klasyczna(f, x0, [a(1), a(1) + 3*h], h);
+    % [~, x(1:4, :)] = RK4klasyczna(f, x0, [a(1), a(1) + 3*h], h, eps);
     x(1, :) = x0;
     for i = 1:3 
         k(1, :) = f(t(i), x(i, :));

@@ -1,5 +1,19 @@
 % func.m
 % Autor: Kamil Jabłonowski
+% funkcja wyznaczająca wartości prawych stron równań układu równań danego w
+% w treści zadania
+%
+% zmienne wejściowe
+% x - wektor wartości funkcji x(t)
+% ~ - stworzone solvery umożliwiają wykorzystanie dla równań, w których po
+%   prawej stronie występuje jawnie zmienna t, w tej funkcji t nie
+%   występuje jawnie, więc nie wykorzystano tej możliwości
+%
+% zmienne wyjściowe
+% y - kolumnowy wektor wartości prawych stron równań, kolejne wiersze 
+%   odpowiadają kolejnym równaniom (kolumnowy ze względu na fakt, 
+%   że wymaga tego wbudowana funkcja ode45, służąca za funkcję referencyjną
+%   dla badanych solverów) 
 
 
 function [y] = func(~, x)

@@ -14,6 +14,7 @@ function [t, x] = RK4zmienna(f, x0, a, h, eps)
     %iteracja
     while (t(i) <= a(2))
         % wyznaczenie rozwiązania x(i+1) metodą RK
+        % [~, [~; x1]] = RK4klasyczna(f, x(i, :), [t(i), t(i) + h], h, eps);
         k(1, :) = f(t(i), x(i, :));
         k(2, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(1, :));
         k(3, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(2, :));
@@ -22,6 +23,7 @@ function [t, x] = RK4zmienna(f, x0, a, h, eps)
         x1 = x(i, :) + (1 / 6) * h * (k(1, :) + 2 * k(2, :) + 2 * k(3, :) + k(4, :));
         
         % wyznaczenie rozwiązania wg zasady podwójnego kroku
+        % [~, [~; ~; x(i + 1,:)]] = RK4klasyczna(f, x(i, :), [t(i), t(i) + h], h / 2, eps);
         % 1 krok
         k(1, :) = f(t(i), x(i, :));
         k(2, :) = f(t(i) + 0.5 * (h / 2), x(i, :) + 0.5 * (h / 2) * k(1, :));
