@@ -5,8 +5,8 @@ function [t, x] = prezentacja(solver, f, a, h, x0)
     global save;
     global comp_with_ode45;
     % wypisanie informacji o zadaniu
-    solver_name = func2str(solver);
-    constraints_str = '[';
+    solver_name = func2str(solver);                 % nazwa metody jako nazwa funkcji
+    constraints_str = '[';                          % warunki brzegowe w postaci znakowej w konwencji [x01_x02_..._x0n]
     fprintf("Rozwiązanie dla metody %s w przedziale [%d, %d]\nkrok = %f\nwarunki brzegowe\n", solver_name, a(1), a(2), h);
     for i = 1:length(x0)
         fprintf("x%d(%d) = %f\n", i, a(1), x0(i));
