@@ -1,7 +1,7 @@
 % prezentacja.m
 % Autor: Kamil Jabłonowski
 
-function [t, x] = prezentacja(solver, f, a, h, x0)
+function [t, x] = prezentacja(solver, f, a, h, x0, eps)
     global save;
     global comp_with_ode45;
     % wypisanie informacji o zadaniu
@@ -20,7 +20,7 @@ function [t, x] = prezentacja(solver, f, a, h, x0)
     
     % rozwiązanie z użyciem wybranego solvera
     tic;
-    [t, x] = solver(f, x0, a, h);
+    [t, x] = solver(f, x0, a, h, eps);
     t_solver = toc;
     fprintf("Czas obliczeń dla metody %s wyniósł t = %fms\n", solver_name, t_solver * 1000);
     

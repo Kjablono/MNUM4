@@ -22,7 +22,7 @@
 
 
 
-function [t, x] = RK4klasyczna(f, x0, a, h)
+function [t, x] = RK4klasyczna(f, x0, a, h, ~)
     n = length(x0);             % wymiarowość układu
     t = (a(1):h:a(2))';         % chwile czasu w których wyznaczane będą wartości
     k = zeros(4, n);            % macierz na wartości k używane w metodzie

@@ -21,7 +21,7 @@
 % x - macierz wartości x, kolejne wiersze odpowiadają kolejnym chwilom
 % czasu t, kolumny odpowiadają kolejnym zmiennym x1, x2,.. ,xn
 
-function [t, x] = PK4adams(f, x0, a, h)
+function [t, x] = PK4adams(f, x0, a, h, ~)
 
     % wartości współczynników beta dla metody Adamsa 4 rzędu
     betap = [55/24, -59/24, 37/24, -9/24];                      % dla predyktora (metoda Adamsa jawna)
@@ -35,7 +35,15 @@ function [t, x] = PK4adams(f, x0, a, h)
     if (a(2) < a(1) + 4 * h)
         error("Zbyt duży krok algorytmu, metoda nieskuteczna");
     end
-    [~, x(1:4, :)] = RK4klasyczna(f, x0, [a(1), a(1) + 3*h], h);
+    % [~, x(1:4, :)] = RK4klasyczna(f, x0, [a(1), a(1) + 3*h], h);
+    for i = 2:4 
+        k(1, :) = f(t(i), x(i, :));
+        k(2, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(1, :));
+        k(3, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(2, :));
+        k(4, :) = f(t(i) + h, x(i, :) + h * k(3, :));
+        
+        x(i + 1, :) = x(i, :) + (1 / 6) * h * (k(1, :) + 2 * k(2, :) + 2 * k(3, :) + k(4, :));        
+    end
     
     % Predyktor - Korektor
     for i = 5:length(t)
