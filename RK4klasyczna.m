@@ -29,10 +29,10 @@ function [t, x] = RK4klasyczna(f, x0, a, h)
     x = zeros(length(t), n);    % macierz na rozwiązania x(i,j) - wartość j-tej funkcji w chwili i
     x(1, :) = x0;
     for i = 1:(length(t) - 1) 
-        k(1, :) = f(t, x(i, :));
-        k(2, :) = f(t + 0.5 * h, x(i, :) + 0.5 * h * k(1, :));
-        k(3, :) = f(t + 0.5 * h, x(i, :) + 0.5 * h * k(2, :));
-        k(4, :) = f(t + h, x(i, :) + h * k(3, :));
+        k(1, :) = f(t(i), x(i, :));
+        k(2, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(1, :));
+        k(3, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(2, :));
+        k(4, :) = f(t(i) + h, x(i, :) + h * k(3, :));
         
         x(i + 1, :) = x(i, :) + (1 / 6) * h * (k(1, :) + 2 * k(2, :) + 2 * k(3, :) + k(4, :));        
     end
