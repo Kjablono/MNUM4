@@ -32,11 +32,12 @@ function [t, x] = PK4adams(f, x0, a, h, ~)
     x = zeros(length(t), n);                                    % macierz na rozwiązania x(i,j) - wartość j-tej funkcji w chwili i
     
     % wyznaczenie pierwszych czterech wartości algorytmem RK4klasyczna
-    if (a(2) < a(1) + 4 * h)
+    if (a(2) < a(1) + 3 * h)
         error("Zbyt duży krok algorytmu, metoda nieskuteczna");
     end
     % [~, x(1:4, :)] = RK4klasyczna(f, x0, [a(1), a(1) + 3*h], h);
-    for i = 2:4 
+    x(1, :) = x0;
+    for i = 1:3 
         k(1, :) = f(t(i), x(i, :));
         k(2, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(1, :));
         k(3, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(2, :));

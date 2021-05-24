@@ -22,14 +22,14 @@ function [t, x] = prezentacja(solver, f, a, h, x0, eps)
     tic;
     [t, x] = solver(f, x0, a, h, eps);
     t_solver = toc;
-    fprintf("Czas obliczeń dla metody %s wyniósł t = %fms\n", solver_name, t_solver * 1000);
+    fprintf("Czas obliczeń dla metody %s wyniósł %fms, wykonano %d iteracji\n", solver_name, t_solver * 1000, length(t));
     
     % rozwiązanie z użyciem wbudowanej funkcji ode45
     if (comp_with_ode45 == true)
         tic;
         [tref, xref] = ode45(f, a, x0);
         t_ode45 = toc;
-        fprintf("Czas obliczeń dla metody ode45 wyniósł t = %fms\n", t_ode45 * 1000);
+        fprintf("Czas obliczeń dla metody ode45 wyniósł %fms, wykonano %d iteracji\n", t_ode45 * 1000, length(tref));
     end
     
     % prezentacja wyników  
