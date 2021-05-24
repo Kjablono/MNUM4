@@ -11,7 +11,7 @@
 % a = [t0, tk] - przedział na którym rozwiązywane jest rozwiązanie
 %   t0 - początek przedziału
 %   tk - koniec przedziału
-% x0 - wektor warunków brzegeowych [x00(t0), x01(t0),.. x0n(t0)]
+% x0 - wektor warunków brzegowych [x00(t0), x01(t0),.. x0n(t0)]
 % h - stały krok
 %
 % zmienne wyjściowe:

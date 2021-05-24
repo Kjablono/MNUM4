@@ -1,5 +1,26 @@
 % RK4zmienna.m
 % Autor: Kamil Jabłonowski
+% funkcja wyznacza rozwiązanie układu równań różniczkowych o dowolnej
+% wymiarowości metodą Rungego-Kutty czwartego rzędu ze zmiennym krokiem.
+%
+% zmienne wejściowe:
+% f - uchwyt do funkcji opisującej układ równań różniczkowych
+%   funkcja f jest postaci [y] = f(x), gdzie
+%   y - wektor kolumnowy pochodnych xi'
+%   f(x) = f(x1, x2,..., xn)
+% a = [t0, tk] - przedział na którym rozwiązywane jest rozwiązanie
+%   t0 - początek przedziału
+%   tk - koniec przedziału
+% x0 - wektor warunków brzegowych [x00(t0), x01(t0),.. x0n(t0)]
+% h - krok początkowy
+% eps = [eps_względny, eps_bezwzględny] - wartości współczynników epsilon
+%   potrzybnych przy wyznaczaniu błędu
+%
+% zmienne wyjściowe:
+% t - wektor wartości t w których wyznaczone zostały przybliżenia zmiennych
+% układu równań różniczkowych
+% x - macierz wartości x, kolejne wiersze odpowiadają kolejnym chwilom
+% czasu t, kolumny odpowiadają kolejnym zmiennym x1, x2,.. ,xn
 
 function [t, x] = RK4zmienna(f, x0, a, h, eps)
     
@@ -14,7 +35,8 @@ function [t, x] = RK4zmienna(f, x0, a, h, eps)
     %iteracja
     while (t(i) <= a(2))
         % wyznaczenie rozwiązania x(i+1) metodą RK
-        % [~, [~; x1]] = RK4klasyczna(f, x(i, :), [t(i), t(i) + h], h, eps);
+%         [~, odp] = RK4klasyczna(f, x(i, :), [t(i), t(i) + h], h, eps);
+%         x1 = odp(2, :);
         k(1, :) = f(t(i), x(i, :));
         k(2, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(1, :));
         k(3, :) = f(t(i) + 0.5 * h, x(i, :) + 0.5 * h * k(2, :));
@@ -23,7 +45,8 @@ function [t, x] = RK4zmienna(f, x0, a, h, eps)
         x1 = x(i, :) + (1 / 6) * h * (k(1, :) + 2 * k(2, :) + 2 * k(3, :) + k(4, :));
         
         % wyznaczenie rozwiązania wg zasady podwójnego kroku
-        % [~, [~; ~; x(i + 1,:)]] = RK4klasyczna(f, x(i, :), [t(i), t(i) + h], h / 2, eps);
+%         [~, odp] = RK4klasyczna(f, x(i, :), [t(i), t(i) + h], h / 2, eps);
+%         x(i + 1, :) = odp(3, :);
         % 1 krok
         k(1, :) = f(t(i), x(i, :));
         k(2, :) = f(t(i) + 0.5 * (h / 2), x(i, :) + 0.5 * (h / 2) * k(1, :));

@@ -9,19 +9,22 @@
 % solver - uchwyt do funkcji implementującej algorytm rozwiązania 
 % f - uchwyt do funkcji wyznaczającej wartości prawych stron układu równań
 % a = [t0, tk] - przedział na którym poszukujemy rozwiązania
-% x0 - wektor punktów początkowych
+%   t0 - początek przedziału
+%   tk - koniec przedizału
+% x0 - wektor warunków brzegowych [x00(t0), x01(t0),.. x0n(t0)]
 % eps = [eps_względny, eps_bezwzględny] - wartości współczynników epsilon
 %   potrzybnych przy wyznaczaniu błędu w metodach ze zmiennym krokiem
 % zmienne globalne:
 % save - zmienna ustawiona na wartość true powoduje zapisanie wykresów w
-% folderze ./plots
+%   folderze ./plots
 % comp_with_ode45 - zmienna ustawiona na wartość true porównuje porównanie
-% z funkcją MATLABową ode45
+%   z funkcją MATLABową ode45
 %
 % zmienne wyjściowe:
-% t - wektor chwil w których dokonano pomiarów
-% x - wektor wartości funkcji xi(t) w danych chwilach, kolejne wiersze
-%   reprezentują kolejne chwile, a kolumny oznaczają kolejne funkcje
+% t - wektor wartości t w których wyznaczone zostały przybliżenia zmiennych
+%   układu równań różniczkowych
+% x - macierz wartości x, kolejne wiersze odpowiadają kolejnym chwilom
+%   czasu t, kolumny odpowiadają kolejnym zmiennym x1, x2,.. ,xn
 
 function [t, x] = prezentacja(solver, f, a, h, x0, eps)
     global save;
@@ -106,6 +109,7 @@ function [t, x] = prezentacja(solver, f, a, h, x0, eps)
         legend('Location', 'southeast');
         title(strcat(solver_name, '(x1, x2, x3)'));
         hold off;
+        view(3);
         
         if (save == true)
             saveas(4, strcat('./plots/', solver_name, '_x0=', constraints_str, '_h=', num2str(h), '_x1(x2, x3).png'));
