@@ -7,7 +7,7 @@ function [t, x] = prezentacja(solver, f, a, h, x0)
     % wypisanie informacji o zadaniu
     solver_name = func2str(solver);
     constraints_str = '[';
-    fprintf("Rozwiązanie dla metody %s w przedziale [%d, %d]\nkrok = %f\nwarunki brzegowe\n", solver_name, a(1), a(2), h);
+    fprintf("Rozwiązanie dla metody %s w przedziale [%d, %d] dla warunków brzegowych\n", solver_name, a(1), a(2));
     for i = 1:length(x0)
         fprintf("x%d(%d) = %f\n", i, a(1), x0(i));
         if (i ~= 1)
@@ -49,7 +49,7 @@ function [t, x] = prezentacja(solver, f, a, h, x0)
         hold off;
         
         if (save == true)
-            saveas(i, strcat('./plots/', solver_name, '_x0=', constraints_str, '_h=', num2str(h), '_x', num2str(i), '(t).png'));
+            saveas(i, strcat('./plots/', solver_name, '_x0=', constraints_str, '_x', num2str(i), '(t).png'));
         end
     end
     
@@ -67,8 +67,11 @@ function [t, x] = prezentacja(solver, f, a, h, x0)
         title(strcat(solver_name, ' (x1, x2)'));
         hold off;
         
+        figure(4);
+        
+        
         if (save == true)
-            saveas(3, strcat('./plots/', solver_name, '_x0=', constraints_str, '_h=', num2str(h), '_x1(x2).png'));
+            saveas(3, strcat('./plots/', solver_name, '_x0=', constraints_str, '_x1(x2).png'));
         end
     end
     

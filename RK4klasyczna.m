@@ -6,7 +6,7 @@
 % zmienne wejściowe:
 % f - uchwyt do funkcji opisującej układ równań różniczkowych
 %   funkcja f jest postaci [y] = f(x), gdzie
-%   y - wektor pochodnych xi'
+%   y - wektor kolumnowy pochodnych xi'
 %   f(x) = f(x1, x2,..., xn)
 % a = [t0, tk] - przedział na którym rozwiązywane jest rozwiązanie
 %   t0 - początek przedziału
