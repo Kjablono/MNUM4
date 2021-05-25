@@ -19,5 +19,5 @@ x0d = [0.01, 0.001];        % warunki brzegowe dla podpunktu d)
 
 x0mock = [0, 1, 1];
 
-
+% wołanie funkcji (@nazwa_solvera, @funkcja, przedział, krok, warunki_brzegowe, współczynniki_błędów)
 [t, x] = prezentacja(@RK4klasyczna, @func, a, h, x0a, eps);
