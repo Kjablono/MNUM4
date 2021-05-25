@@ -27,9 +27,9 @@ function [x, y] = PK4adams(f, y0, a, h, ~)
     betap = [55/24, -59/24, 37/24, -9/24];                      % dla predyktora (metoda Adamsa jawna)
     betak = [251/720, 646/720, -264/720, 106/720, -19/720];     % dla korektora (metoda Adamsa niejawna)
     
-    n = length(y0);                                             % wymiarowość układu
-    x = (a(1):h:a(2))';                                         % chwile czasu w których wyznaczane będą wartości
-    y = zeros(length(x), n);                                    % macierz na rozwiązania y(i,j) - wartość j-tej funkcji dla xi
+    n = length(y0);                         % wymiarowość układu
+    x = (a(1):h:a(2))';                     % chwile czasu w których wyznaczane będą wartości
+    y = zeros(length(x), n);                % macierz na rozwiązania y(i,j) - wartość j-tej funkcji dla xi
     
     % wyznaczenie pierwszych czterech wartości algorytmem RK4klasyczna
     if (a(2) < a(1) + 3 * h)

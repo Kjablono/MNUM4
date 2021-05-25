@@ -63,7 +63,11 @@ function [x, y] = prezentacja(solver, f, a, h, y0, eps)
         figure(i);
         clf(i)
         hold on;
-        plot(x, y(:, i), 'r', 'DisplayName', solver_name);
+        if (strcmp(solver_name, 'RK4zmienna'))
+            plot(x, y(:, i), 'r.-', 'DisplayName', solver_name);
+        else
+            plot(x, y(:, i), 'r', 'DisplayName', solver_name);
+        end
         
         if (comp_with_ode45 == true)
             plot(xref, yref(:, i), 'b', 'DisplayName', 'ode45');
@@ -74,7 +78,7 @@ function [x, y] = prezentacja(solver, f, a, h, y0, eps)
         hold off;
         
         if (save == true)
-            saveas(i, strcat('./plots/', solver_name, '_y0=', constraints_str, '_h=', num2str(h), '_y', num2str(i), '(x).png'));
+            saveas(i, strcat('./plots/', constraints_str, '/', solver_name, '/', solver_name, '_y0=', constraints_str, '_h=', num2str(h), '_y', num2str(i), '(x).png'));
         end
     end
     
@@ -84,7 +88,11 @@ function [x, y] = prezentacja(solver, f, a, h, y0, eps)
         figure(3);
         clf(3);
         hold on;
-        plot(y(:, 1), y(:, 2), 'r', 'DisplayName', solver_name);
+        if (strcmp(solver_name, 'RK4zmienna'))
+            plot(y(:, 1), y(:, 2), 'r.-', 'DisplayName', solver_name);
+        else
+            plot(y(:, 1), y(:, 2), 'r', 'DisplayName', solver_name);
+        end
         if (comp_with_ode45 == true)
             plot(yref(:, 1), yref(:, 2), 'b', 'DisplayName', 'ode45');
         end
@@ -93,7 +101,7 @@ function [x, y] = prezentacja(solver, f, a, h, y0, eps)
         hold off;
         
         if (save == true)
-            saveas(3, strcat('./plots/', solver_name, '_y0=', constraints_str, '_h=', num2str(h), '_y1(y2).png'));
+            saveas(3, strcat('./plots/',constraints_str, '/', solver_name, '/', solver_name, '_y0=', constraints_str, '_h=', num2str(h), '_y1(y2).png'));
         end
     end
     
@@ -112,7 +120,7 @@ function [x, y] = prezentacja(solver, f, a, h, y0, eps)
         view(3);
         
         if (save == true)
-            saveas(4, strcat('./plots/', solver_name, '_y0=', constraints_str, '_h=', num2str(h), '_y1(y2, y3).png'));
+            saveas(4, strcat('./plots/', constraints_str, '/', solver_name, '/', solver_name, '_y0=', constraints_str, '_h=', num2str(h), '_y1(y2, y3).png'));
         end       
     end   
 end

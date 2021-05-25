@@ -56,11 +56,11 @@ function [x, y] = RK4zmienna(f, y0, a, h, eps)
         tmp_y = y(i, :) + (1 / 6) * (h / 2) * (k(1, :) + 2 * k(2, :) + 2 * k(3, :) + k(4, :));
         
         % 2 krok
-        tmp_t = x(i) + h / 2;
-        k(1, :) = f(tmp_t, tmp_y);
-        k(2, :) = f(tmp_t + 0.5 * (h / 2), tmp_y + 0.5 * (h / 2) * k(1, :));
-        k(3, :) = f(tmp_t + 0.5 * (h / 2), tmp_y + 0.5 * (h / 2) * k(2, :));
-        k(4, :) = f(tmp_t + h / 2, tmp_y + (h / 2) * k(3, :));
+        tmp_x = x(i) + h / 2;
+        k(1, :) = f(tmp_x, tmp_y);
+        k(2, :) = f(tmp_x + 0.5 * (h / 2), tmp_y + 0.5 * (h / 2) * k(1, :));
+        k(3, :) = f(tmp_x + 0.5 * (h / 2), tmp_y + 0.5 * (h / 2) * k(2, :));
+        k(4, :) = f(tmp_x + h / 2, tmp_y + (h / 2) * k(3, :));
         
         y(i + 1, :) = tmp_y + (1 / 6) * (h / 2) * (k(1, :) + 2 * k(2, :) + 2 * k(3, :) + k(4, :));
         
