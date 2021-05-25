@@ -15,7 +15,24 @@ comp_with_ode45 = true;
 
 a = [0, 20];                % przedział szukania rozwiązań
 h = 0.25;                   % krok (lub krok początkowy dla metod ze zmiennym krokiem)
-eps = [10e-8, 10e-8];     % wartości współczynników błędów do funkcji ze zmiennym krokiem
+eps = [10e-8, 10e-8];       % wartości współczynników błędów do funkcji ze zmiennym krokiem
+
+% wartości kroków wykorzystane w sprawozdaniu. Ostatnia wartość w wektorze
+% jest wartością oznaną za optymalną
+ha_RK4klasyczna = [0.1; 0.02116; 0.015; 0.01; 0.007];
+hb_RK4klasyczna = [0.5; 0.25; 0.1];
+hc_RK4klasyczna = [0.1; 0.0668; 0.04; 0.021];
+hd_RK4klasyczna = [1; 0.5; 0.25];
+
+ha_PK4adams = [0.1; 0.02065; 0.01; 0.008];
+hb_PK4adams = [0.5; 0.2];
+hc_PK4adams = [0.1; 0.0667; 0.03; 0.0175];
+hd_PK4adams = [0.5; 0.25];
+
+ha_RK4zmienna = 0.06;
+hb_RK4zmienna = 1;
+hc_RK4zmienna = 0.1;
+hd_RK4zmienna = 1;
 
 x0a = [7, 8];               % warunki brzegowe dla podpunktu a)
 x0b = [0, 0.2];             % warunki brzegowe dla podpunktu b)
@@ -25,4 +42,7 @@ x0d = [0.01, 0.001];        % warunki brzegowe dla podpunktu d)
 x0mock = [0, 1, 1];
 
 % wołanie funkcji (@nazwa_solvera, @funkcja, przedział, krok, warunki_brzegowe, współczynniki_błędów)
-[t, x] = prezentacja(@PK4adams, @func, a, h, x0d, eps);
+[t, x] = prezentacja(@PK4adams, @func, a, hd_PK4adams(2), x0d, eps);
+
+
+

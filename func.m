@@ -1,7 +1,8 @@
 % func.m
 % Autor: Kamil Jabłonowski
 % funkcja wyznaczająca wartości prawych stron równań układu równań danego w
-% w treści zadania
+% w treści zadania. Implementacja funkcji jest zgodna z funkcją wymaganą
+% przez metodę ode45
 %
 % zmienne wejściowe
 % y - wektor wartości funkcji y(x)
