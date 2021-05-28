@@ -13,9 +13,10 @@ save = false;
 comp_with_ode45 = true;
 
 
-a = [0, 20];                % przedział szukania rozwiązań
-h = 0.25;                   % krok (lub krok początkowy dla metod ze zmiennym krokiem)
+a = [0, 40];                % przedział szukania rozwiązań
+h = 0.5;                   % krok (lub krok początkowy dla metod ze zmiennym krokiem)
 eps = [10e-8, 10e-8];       % wartości współczynników błędów do funkcji ze zmiennym krokiem
+x0 = [-0.03, 0.03];
 
 % wartości kroków wykorzystane w sprawozdaniu. Ostatnia wartość w wektorze
 % jest wartością oznaną za optymalną
@@ -42,7 +43,7 @@ x0d = [0.01, 0.001];        % warunki brzegowe dla podpunktu d)
 x0mock = [0, 1, 1];
 
 % wołanie funkcji (@nazwa_solvera, @funkcja, przedział, krok, warunki_brzegowe, współczynniki_błędów)
-[t, x] = prezentacja(@PK4adams, @func, a, hd_PK4adams(2), x0d, eps);
+[t, x] = prezentacja(@RK4zmienna, @mockfun, a, h, x0mock, eps);
 
 
 
